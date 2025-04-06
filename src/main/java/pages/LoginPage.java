@@ -9,10 +9,11 @@ public class LoginPage {
     private static final String LOGIN_BUTTON_XPATH = "//*[@type='submit']";
     private static final String REGISTER_LINK_XPATH = "(//*[@class='login__links']/a)[2]";
 
-    public void login(String username, String password){
+    public EntriesPage login(String username, String password){
         $(USER_INPUT).sendKeys(username);
         $(PASSWORD_INPUT).sendKeys(password);
         $x(LOGIN_BUTTON_XPATH).click();
+        return new EntriesPage();
     }
 
     public RegisterPage openRegisterPage(){
