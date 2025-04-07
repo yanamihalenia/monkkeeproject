@@ -32,7 +32,6 @@ public class BaseTest {
         ChromeOptions options = new ChromeOptions();
         Map<String, Object> prefs = new HashMap<>();
         options.addArguments("--disable-popup-blocking");
-        options.addArguments("--disable-notifications");
         prefs.put("profile.default_content_setting_values.notifications", 2);
         options.setExperimentalOption("prefs", prefs);
         WebDriver driver = new ChromeDriver(options);

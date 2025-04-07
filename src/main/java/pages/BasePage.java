@@ -1,6 +1,8 @@
 package pages;
 
-public class BasePage {
+import constants.IConstants;
+
+public class BasePage implements IConstants {
     public BasePage(){
     }
 }
