@@ -6,9 +6,11 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import pages.EntriesPage;
 import pages.HomePage;
 import pages.LoginPage;
 import pages.RegisterPage;
+import utils.PropertyReader;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -20,11 +22,16 @@ public class BaseTest {
     HomePage homePage;
     LoginPage loginPage;
     RegisterPage registerPage;
+    EntriesPage entriesPage;
+
+    public static String USER = PropertyReader.getProperty("user");
+    public static String PASSWORD = PropertyReader.getProperty("password");
 
     public void initPages(){
         homePage = new HomePage();
         loginPage = new LoginPage();
         registerPage = new RegisterPage();
+        entriesPage = new EntriesPage();
     }
 
     @BeforeMethod

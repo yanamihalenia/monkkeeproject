@@ -17,7 +17,12 @@ public class LoginPage extends BasePage {
         return new EntriesPage();
     }
 
+    public void openLoginPage(String url){
+        open(url);
+    }
+
     public RegisterPage goToRegisterPage(){
+        openLoginPage(LOGIN_PAGE_URL);
         $x(REGISTER_LINK_XPATH).click();
         return new RegisterPage();
     }

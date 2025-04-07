@@ -24,6 +24,7 @@
         <log4j-core.version>2.20.0</log4j-core.version>
         <selenide.version>7.7.3</selenide.version>
         <selenide-core.version>7.7.3</selenide-core.version>
+        <javafaker.version>1.0.2</javafaker.version>
     </properties>
     <build>
         <plugins>
@@ -32,9 +33,6 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>${maven-surefire-plugin.version}</version>
                 <configuration>
-                    <suiteXmlFiles>
-                        <suiteXmlFile>src/test/resources/${suiteXmlFile}</suiteXmlFile>
-                    </suiteXmlFiles>
                     <argLine>
                         -javaagent:${settings.localRepository}/org/aspectj/aspectjweaver/${aspectjweaver.version}/aspectjweaver-${aspectjweaver.version}.jar -Xmx256m
                     </argLine>
@@ -114,6 +112,11 @@
             <artifactId>selenide-core</artifactId>
             <version>${selenide-core.version}</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
+        <!-- https://mvnrepository.com/artifact/com.github.javafaker/javafaker -->
+        <dependency>
+            <groupId>com.github.javafaker</groupId>
+            <artifactId>javafaker</artifactId>
+            <version>${javafaker.version}</version>
+        </dependency>
     </dependencies>
 </project>
