@@ -54,8 +54,4 @@ public class LoginPage extends BasePage {
             return "";
         }
     }
-
-    public String getCurrentUrl(){
-        return WebDriverRunner.url();
-    }
 }
