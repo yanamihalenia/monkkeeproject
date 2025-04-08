@@ -6,4 +6,5 @@ public interface IConstants {
     String LOGIN_PAGE_URL = BASE_URL + "app/#/";
     String REGISTER_PAGE_URL = BASE_URL + "account/registration";
     String LIST_OF_ENTRIES_URL = BASE_URL + "app/#/entries";
+    String ERROR_TEXT_MESSAGE = "Mandatory field";
 }
