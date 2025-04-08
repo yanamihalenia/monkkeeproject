@@ -8,6 +8,8 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import pages.*;
+import steps.LoginSteps;
+import steps.RegisterSteps;
 import utils.PropertyReader;
 
 import java.util.HashMap;
@@ -19,7 +21,9 @@ import static com.codeborne.selenide.WebDriverRunner.setWebDriver;
 public class BaseTest implements IConstants {
     HomePage homePage;
     LoginPage loginPage;
+    LoginSteps loginSteps;
     RegisterPage registerPage;
+    RegisterSteps registerSteps;
     EntriesPage entriesPage;
     HeaderPage headerPage;
 
@@ -29,7 +33,9 @@ public class BaseTest implements IConstants {
     public void initPages(){
         homePage = new HomePage();
         loginPage = new LoginPage();
+        loginSteps = new LoginSteps();
         registerPage = new RegisterPage();
+        registerSteps = new RegisterSteps();
         entriesPage = new EntriesPage();
         headerPage = new HeaderPage();
     }
