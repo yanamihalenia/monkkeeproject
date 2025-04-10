@@ -13,8 +13,8 @@ public class LoginPage extends BasePage {
     private static final SelenideElement PASSWORD_INPUT = $("#password");
     private static final SelenideElement LOGIN_BUTTON = $x("//*[@type='submit']");
     private static final String REGISTER_LINK_XPATH = "(//*[@class='login__links']/a)[2]";
-    private static final SelenideElement ERROR_MESSAGE_USER_XPATH = $x("//*[@id='login']/../div");
-    private static final SelenideElement ERROR_MESSAGE_PASSWORD_XPATH = $x("//*[@for='password']/../div/div[@class='help-block ng-binding']");
+    private static final SelenideElement ERROR_MESSAGE_USER_XPATH = $x("//*[@class='help-block ng-binding']");
+    private static final SelenideElement ERROR_MESSAGE_PASSWORD_XPATH = $x("(//*[@class='help-block ng-binding'])[2]");
 
     public EntriesPage login(String username, String password, String url){
         open(url);

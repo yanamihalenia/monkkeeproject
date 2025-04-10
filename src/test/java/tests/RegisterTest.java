@@ -8,6 +8,8 @@ public class RegisterTest extends BaseTest{
 
     @Test(description = "1. Registration")
     public void registerNewUserTest(){
-        registerSteps.registerUser(faker.internet().emailAddress(), faker.internet().password(), faker.animal().name());
+        registerSteps.registerUser(faker.internet().emailAddress(),
+                faker.internet().password(),
+                faker.animal().name());
     }
 }

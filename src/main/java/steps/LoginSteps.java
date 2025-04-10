@@ -16,8 +16,12 @@ public class LoginSteps implements IConstants {
     }
 
     @Step
-    public void fillAndConfirmLoginForm(String username, String password, String url){
+    public void login(String username, String password, String url){
         loginPage.login(username, password, url);
+    }
+
+    @Step("Check Enteries page opened after login")
+    public void checkEnteriesPageOpened(){
         entriesPage.isCreateButtonVisible();
     }
 
