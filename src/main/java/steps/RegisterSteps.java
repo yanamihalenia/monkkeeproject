@@ -11,7 +11,7 @@ public class RegisterSteps {
     }
 
     @Step("Fill register form and confirm it")
-    public void registerUser(String email, String password, String passwordHint){
+    public void registerUserAndCheckRegisterMessage(String email, String password, String passwordHint){
         loginPage.goToRegisterPage()
                 .fillRegisterForm(email, password, passwordHint)
                 .confirmRegister()
