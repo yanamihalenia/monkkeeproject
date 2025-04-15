@@ -1,6 +1,7 @@
 package tests;
 
 import com.codeborne.selenide.Configuration;
+import com.github.javafaker.Faker;
 import constants.IConstants;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -8,9 +9,11 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import pages.*;
+import steps.EntriesSteps;
 import steps.LoginSteps;
 import steps.RegisterSteps;
 import utils.PropertyReader;
+import waiters.Waiter;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -26,6 +29,10 @@ public class BaseTest implements IConstants {
     RegisterSteps registerSteps;
     EntriesPage entriesPage;
     HeaderPage headerPage;
+    EditEntryPage editEntryPage;
+    Waiter waiter;
+    EntriesSteps entriesSteps;
+    Faker faker = new Faker();
 
     public static String USER = PropertyReader.getProperty("user");
     public static String PASSWORD = PropertyReader.getProperty("password");
@@ -38,6 +45,9 @@ public class BaseTest implements IConstants {
         registerSteps = new RegisterSteps();
         entriesPage = new EntriesPage();
         headerPage = new HeaderPage();
+        editEntryPage = new EditEntryPage();
+        waiter = new Waiter();
+        entriesSteps = new EntriesSteps();
     }
 
     @BeforeMethod
