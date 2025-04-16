@@ -31,4 +31,20 @@ public class EntriesSteps {
         String changedEntryText = entriesPage.getEntryTextFromListOfEntries();
         Assert.assertEquals(changedEntryText, originalEntryText + entryText);
     }
+
+    @Step("Check and delete entry by description")
+    public void checkAndDeleteEntryByDescription(String entryDescription){
+        entriesPage.checkEntryFromList(entryDescription);
+        entriesPage.clickDeleteButton();
+    }
+
+    @Step("Create and delete an entry")
+    public void createAndDeleteEntry(String entryText){
+        entriesPage.openFormForNewEntry();
+        editEntryPage.fillEntryForm(entryText);
+        editEntryPage.backToAllEntries();
+        checkAndDeleteEntryByDescription(entryText);
+        String lastEntryDescription = entriesPage.getEntryTextFromListOfEntries();
+        Assert.assertNotEquals(lastEntryDescription, entryText);
+    }
 }

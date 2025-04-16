@@ -16,4 +16,10 @@ public class EntriesTest extends BaseTest{
         entriesSteps.createNewEntryAndCheckEntryIsCreated(faker.book().title());
         entriesSteps.updateEntryAndCheckEntryIsUpdated(faker.animal().name());
     }
+
+    @Test(description = "8. Delete an entry")
+    public void deleteEntryTest(){
+        loginSteps.login(USER, PASSWORD, LOGIN_PAGE_URL);
+        entriesSteps.createAndDeleteEntry(faker.animal().name());
+    }
 }

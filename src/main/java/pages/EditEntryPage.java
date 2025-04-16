@@ -11,11 +11,12 @@ public class EditEntryPage extends BasePage{
     private static final SelenideElement BACK_TO_OVERVIEW_BUTTON = $("#back-to-overview");
     private static final SelenideElement DELETE_ENTRY_BUTTON = $("#delete-entry");
     private static final SelenideElement ENTRY_INPUT = $("#editable");
-    private static final SelenideElement SAVE_BUTTON = $x("//*[@class='cke_toolgroup']//*[contains(@title,'Save')]"); //$x("//*[@class='cke_toolgroup']//*[contains(@class,'cke_button__savetoggle')]");
+    private static final SelenideElement SAVE_BUTTON = $x("//*[@class='cke_toolgroup']//*[contains(@class,'cke_button__savetoggle')]"); //$x("//*[@class='cke_toolgroup']//*[contains(@title,'Save')]");
 
     public EditEntryPage fillEntryForm(String entryText){
         ENTRY_INPUT.click();
         input.fillField(ENTRY_INPUT, entryText);
+        button.clickButton(SAVE_BUTTON);
         waiter.waitForButtonToBecomeDisabled(SAVE_BUTTON, Duration.ofSeconds(5));
         return this;
     }

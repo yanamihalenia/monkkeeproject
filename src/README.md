@@ -8,3 +8,5 @@
 6. Create an entry
 7. Update an entry
 8. Delete an entry
+9. Change entry's date
+10. Create a tag
