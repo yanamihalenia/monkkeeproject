@@ -24,14 +24,11 @@ public class EntriesSteps {
 
     @Step("Update entry and check it in the list of all entries")
     public void updateEntryAndCheckEntryIsUpdated(String entryText){
-        entriesPage.openFormForNewEntry();
+        String originalEntryText = entriesPage.getEntryTextFromListOfEntries();
+        entriesPage.clickEntryDescription();
         editEntryPage.fillEntryForm(entryText);
         editEntryPage.backToAllEntries();
-        Assert.assertEquals(entriesPage.getEntryTextFromListOfEntries(), entryText);
-    }
-
-    @Step("Get entry text")
-    public void getEntryText(){
-        entriesPage.getEntryTextFromListOfEntries();
+        String changedEntryText = entriesPage.getEntryTextFromListOfEntries();
+        Assert.assertEquals(changedEntryText, originalEntryText + entryText);
     }
 }
