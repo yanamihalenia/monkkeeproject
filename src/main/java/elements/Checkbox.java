@@ -2,7 +2,6 @@ package elements;
 
 import com.codeborne.selenide.SelenideElement;
 
-import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$x;
 
 public class Checkbox {
@@ -21,8 +20,4 @@ public class Checkbox {
             checkbox.click();
         }
     }
-
-//    public void checkCheckbox(SelenideElement selenideElement){
-//        $(String.format(label, selenideElement)).click();
-//    }
 }

@@ -12,6 +12,7 @@ import pages.*;
 import steps.EntriesSteps;
 import steps.LoginSteps;
 import steps.RegisterSteps;
+import steps.TagsSteps;
 import utils.PropertyReader;
 import waiters.Waiter;
 
@@ -32,6 +33,8 @@ public class BaseTest implements IConstants {
     EditEntryPage editEntryPage;
     Waiter waiter;
     EntriesSteps entriesSteps;
+    TagsPage tagsPage;
+    TagsSteps tagsSteps;
     Faker faker = new Faker();
 
     public static String USER = PropertyReader.getProperty("user");
@@ -48,6 +51,8 @@ public class BaseTest implements IConstants {
         editEntryPage = new EditEntryPage();
         waiter = new Waiter();
         entriesSteps = new EntriesSteps();
+        tagsPage = new TagsPage();
+        tagsSteps = new TagsSteps();
     }
 
     @BeforeMethod
