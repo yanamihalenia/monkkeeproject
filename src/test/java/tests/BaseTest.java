@@ -9,10 +9,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import pages.*;
-import steps.EntriesSteps;
-import steps.LoginSteps;
-import steps.RegisterSteps;
-import steps.TagsSteps;
+import steps.*;
 import utils.PropertyReader;
 import waiters.Waiter;
 
@@ -22,8 +19,7 @@ import java.util.Map;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static com.codeborne.selenide.WebDriverRunner.setWebDriver;
 
-public class BaseTest implements IConstants {
-    HomePage homePage;
+public class BaseTest implements IConstants, ITestConstants {
     LoginPage loginPage;
     LoginSteps loginSteps;
     RegisterPage registerPage;
@@ -35,13 +31,13 @@ public class BaseTest implements IConstants {
     EntriesSteps entriesSteps;
     TagsPage tagsPage;
     TagsSteps tagsSteps;
+    SettingsSteps settingsSteps;
     Faker faker = new Faker();
 
     public static String USER = PropertyReader.getProperty("user");
     public static String PASSWORD = PropertyReader.getProperty("password");
 
     public void initPages(){
-        homePage = new HomePage();
         loginPage = new LoginPage();
         loginSteps = new LoginSteps();
         registerPage = new RegisterPage();
@@ -53,6 +49,7 @@ public class BaseTest implements IConstants {
         entriesSteps = new EntriesSteps();
         tagsPage = new TagsPage();
         tagsSteps = new TagsSteps();
+        settingsSteps = new SettingsSteps();
     }
 
     @BeforeMethod

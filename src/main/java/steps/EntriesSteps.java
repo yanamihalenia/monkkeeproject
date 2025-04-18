@@ -24,6 +24,13 @@ public class EntriesSteps implements IConstants {
         Assert.assertEquals(entriesPage.getEntryTextFromListOfEntries(), entryText);
     }
 
+    @Step("Create entry and stay on Edit page")
+    public void createEntry(String entryText){
+        entriesPage
+                .openFormForNewEntry()
+                .fillEntryForm(entryText);
+    }
+
     @Step("Update entry and check it in the list of all entries")
     public void updateEntryAndCheckEntryIsUpdated(String entryText){
         String originalEntryText = entriesPage.getEntryTextFromListOfEntries();
@@ -69,5 +76,25 @@ public class EntriesSteps implements IConstants {
     @Step
     public void checkMessageWhenNoEntries() {
         Assert.assertTrue(entriesPage.getNotFoundEntriesMessage());
+    }
+
+    @Step("Search entry")
+    public void fillSearchAndClickSearch(String textSearch){
+        entriesPage.fillSearchField(textSearch);
+        entriesPage.clickSearch();
+        entriesPage.waitResetIsVisible();
+    }
+
+    @Step("Reset search")
+    public void resetSearch(){
+        entriesPage.clickReset();
+    }
+
+    @Step("Check tag assigned to entry")
+    public void checkTagAssignedToEntry(){
+        String tagNameOnEdit = editEntryPage.getTagNameOnEditEntryPage();
+        editEntryPage.backToAllEntries();
+        String tagNameOnAllEntries = entriesPage.getTagNameFromDescription();
+        Assert.assertEquals(tagNameOnEdit, tagNameOnAllEntries);
     }
 }

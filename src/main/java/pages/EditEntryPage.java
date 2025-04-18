@@ -3,19 +3,22 @@ package pages;
 import com.codeborne.selenide.SelenideElement;
 
 import java.time.Duration;
+import java.time.LocalDate;
 
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.$x;
+import static com.codeborne.selenide.Selenide.*;
 
 public class EditEntryPage extends BasePage{
     private static final SelenideElement BACK_TO_OVERVIEW_BUTTON = $("#back-to-overview");
-    private static final SelenideElement DELETE_ENTRY_BUTTON = $("#delete-entry");
     private static final SelenideElement ENTRY_INPUT = $("#editable");
     private static final SelenideElement SAVE_BUTTON = $x("//*[@class='cke_toolgroup']//*[contains(@title,'Save')]");
     private static final SelenideElement SETTINGS_OF_ENTRY_INPUT = $x("//*[@class='cke_top']");
     private static final SelenideElement INPUT_NEW_TAG = $("#new-tag");
     private static final SelenideElement NEW_TAG_OK_BUTTON = $x("//*[@ng-submit='createTag()']//*[@type='submit']");
-
+    private static final SelenideElement CHANGE_DATE_TIME_LINK = $x("//*[@class='entry__date-wrapper']//*[contains(text(), 'Change date/time')]");
+    private static final SelenideElement DATE_INPUT = $("#date");
+    private static final SelenideElement CHANGE_DATE_OK_BUTTON = $x("//*[@ng-show='editDate']/button");
+    private static final SelenideElement CLOSE_CALENDAR = $x("//*[@class='datepicker dropdown-menu']//*[@class='datepicker-close']");
+    private static final SelenideElement ASSIGNED_TAG = $x("//*[@id='tags']//*[contains(@class,'entry__assigned-tags')]//a");
 
     public EditEntryPage fillEntryForm(String entryText){
         ENTRY_INPUT.click();
@@ -34,5 +37,18 @@ public class EditEntryPage extends BasePage{
         input.fillField(INPUT_NEW_TAG, tagName);
         button.clickButton(NEW_TAG_OK_BUTTON);
         return this;
+    }
+
+    public EditEntryPage setEntryDate(){
+        CHANGE_DATE_TIME_LINK.click();
+        LocalDate dateToSelect = LocalDate.of(2025, 4, 25);
+        datePicker.selectDate(dateToSelect, DATE_INPUT);
+        button.clickButton(CLOSE_CALENDAR);
+        button.clickButton(CHANGE_DATE_OK_BUTTON);
+        return this;
+    }
+
+    public String getTagNameOnEditEntryPage(){
+        return ASSIGNED_TAG.getText();
     }
 }

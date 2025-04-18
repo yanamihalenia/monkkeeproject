@@ -28,4 +28,10 @@ public class LoginTest extends BaseTest{
         loginSteps.checkUsernameValidation();
         loginSteps.checkPasswordValidation();
     }
+
+    @Test(description = "13. Check success logout")
+    public void checkSuccessLogout(){
+        loginSteps.login(USER, PASSWORD, LOGIN_PAGE_URL);
+        loginSteps.logoutAndCheckLoginPage();
+    }
 }

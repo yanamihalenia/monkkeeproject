@@ -24,6 +24,11 @@ public class TagsSteps implements IConstants {
                 .createNewTag(tagName);
     }
 
+    @Step("Create new tag")
+    public void createTag(String tagName){
+        editEntryPage.createNewTag(tagName);
+    }
+
     @Step("Open Manage tags and check tag exist")
     public void openManageTagsAndCheckTagExist(String url, String tagName){
         tagsPage

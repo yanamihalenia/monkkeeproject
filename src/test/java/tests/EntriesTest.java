@@ -1,11 +1,12 @@
 package tests;
 
+import lombok.extern.slf4j.Slf4j;
 import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
-import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+@Slf4j
 public class EntriesTest extends BaseTest{
 
     @Test(description = "6. Create an entry", groups = "afterMethodGroup")
@@ -27,12 +28,14 @@ public class EntriesTest extends BaseTest{
         entriesSteps.createAndDeleteEntry(faker.animal().name());
     }
 
-//    @Test(description = "9. Update entry's date")
-//    public void changeEntryDate(){
-//        loginSteps.login(USER, PASSWORD, LOGIN_PAGE_URL);
-//        entriesSteps.createNewEntryAndCheckEntryIsCreated(faker.book().title());
-//
-//    }
+    @Test(description = "9. Update entry's date", groups = "afterMethodGroup")
+    public void changeEntryDate(){
+        loginSteps.login(USER, PASSWORD, LOGIN_PAGE_URL);
+        entriesSteps.createNewEntryAndCheckEntryIsCreated(faker.book().title());
+        entriesPage.clickEntryDescription();
+        editEntryPage.setEntryDate();
+        editEntryPage.backToAllEntries();
+    }
 
     private Object[][] getEntries(){
         return new Object[][]{
@@ -54,6 +57,27 @@ public class EntriesTest extends BaseTest{
         Assert.assertEquals(numOfEntries, "4 entries");
         entriesSteps.selectAllEntriesAndDelete();
         entriesSteps.checkMessageWhenNoEntries();
+    }
+
+    @Test(description = "12. Search entry by description", groups = "afterMethodGroup")
+    public void searchEntryByDescriptionTest(){
+        loginSteps.login(USER, PASSWORD, LOGIN_PAGE_URL);
+        entriesSteps.createNewEntryAndCheckEntryIsCreated("Pay for bill");
+        entriesSteps.createNewEntryAndCheckEntryIsCreated("Meeting");
+        entriesSteps.createNewEntryAndCheckEntryIsCreated("Meeting with team");
+        Assert.assertEquals(entriesSteps.checkNumberOfEntries(), "3 entries");
+        entriesSteps.fillSearchAndClickSearch("Pay");
+        Assert.assertEquals(entriesSteps.checkNumberOfEntries(), "1 entries");
+        entriesSteps.resetSearch();
+        Assert.assertEquals(entriesSteps.checkNumberOfEntries(), "3 entries");
+    }
+
+    @Test(description = "15. Check entry assigned to entry", groups = "afterMethodGroup")
+    public void checkEntryAssignedToEntry(){
+        loginSteps.login(USER, PASSWORD, LOGIN_PAGE_URL);
+        entriesSteps.createEntry(faker.name().fullName());
+        editEntryPage.createNewTag("some tag");
+        entriesSteps.checkTagAssignedToEntry();
     }
 
     @AfterMethod
