@@ -18,10 +18,10 @@ public class RegisterPage extends BasePage{
     private static final SelenideElement USER_REGISTERED_TEXT_XPATH = $x("//*[contains(text(),'User registered')]");
 
     public RegisterPage fillRegisterForm(String email, String password, String passwordHint){
-        input.fillField(EMAIL_INPUT, email);
-        input.fillField(PASSWORD_INPUT, password);
-        input.fillField(PASSWORD_CONFIRMATION_INPUT, password);
-        input.fillField(PASSWORD_HINT_INPUT, passwordHint);
+        input.fillFieldWithClear(EMAIL_INPUT, email);
+        input.fillFieldWithClear(PASSWORD_INPUT, password);
+        input.fillFieldWithClear(PASSWORD_CONFIRMATION_INPUT, password);
+        input.fillFieldWithClear(PASSWORD_HINT_INPUT, passwordHint);
         return this;
     }
 
