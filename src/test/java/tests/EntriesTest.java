@@ -72,8 +72,8 @@ public class EntriesTest extends BaseTest{
         Assert.assertEquals(entriesSteps.checkNumberOfEntries(), "3 entries");
     }
 
-    @Test(description = "15. Check entry assigned to entry", groups = "afterMethodGroup")
-    public void checkEntryAssignedToEntry(){
+    @Test(description = "15. Check tag assigned to entry", groups = "afterMethodGroup")
+    public void checkTagAssignedToEntry(){
         loginSteps.login(USER, PASSWORD, LOGIN_PAGE_URL);
         entriesSteps.createEntry(faker.name().fullName());
         editEntryPage.createNewTag("some tag");
