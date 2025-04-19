@@ -29,7 +29,7 @@ public class EntriesTest extends BaseTest{
     }
 
     @Test(description = "9. Update entry's date", groups = "afterMethodGroup")
-    public void changeEntryDate(){
+    public void changeEntryDateTest(){
         loginSteps.login(USER, PASSWORD, LOGIN_PAGE_URL);
         entriesSteps.createNewEntryAndCheckEntryIsCreated(faker.book().title());
         entriesPage.clickEntryDescription();
@@ -73,7 +73,7 @@ public class EntriesTest extends BaseTest{
     }
 
     @Test(description = "15. Check tag assigned to entry", groups = "afterMethodGroup")
-    public void checkTagAssignedToEntry(){
+    public void checkTagAssignedToEntryTest(){
         loginSteps.login(USER, PASSWORD, LOGIN_PAGE_URL);
         entriesSteps.createEntry(faker.name().fullName());
         editEntryPage.createNewTag("some tag");
