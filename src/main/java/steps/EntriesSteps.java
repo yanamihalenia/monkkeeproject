@@ -88,6 +88,7 @@ public class EntriesSteps implements IConstants {
     @Step("Reset search")
     public void resetSearch(){
         entriesPage.clickReset();
+        entriesPage.waitCreateButtonIsVisible();
     }
 
     @Step("Check tag assigned to entry")

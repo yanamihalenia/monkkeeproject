@@ -49,6 +49,10 @@ public class EntriesPage extends BasePage{
         waiter.waitForElementIsVisible(RESET_LINK, Duration.ofSeconds(3));
     }
 
+    public void waitCreateButtonIsVisible(){
+        waiter.waitForElementIsVisible(CREATE_ENTRY_BUTTON, Duration.ofSeconds(3));
+    }
+
     public String getEntryTextFromListOfEntries(){
         return ENTRY_DESCRIPTION.getText();
     }
