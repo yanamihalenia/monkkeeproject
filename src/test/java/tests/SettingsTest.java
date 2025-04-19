@@ -5,7 +5,7 @@ import org.testng.annotations.Test;
 public class SettingsTest extends BaseTest{
 
     @Test(description = "14. Check all settings tabs are available")
-    public void checkAllSettingsAvailable(){
+    public void checkAllSettingsAvailableTest(){
         loginSteps.login(USER, PASSWORD, LOGIN_PAGE_URL);
         settingsSteps.openSettingsPage();
         settingsSteps.openSettingTabAndCheckTitle(SETTINGS_LANGUAGE_TAB, SETTINGS_LANGUAGE_TITLE);

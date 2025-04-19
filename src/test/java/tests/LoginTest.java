@@ -30,7 +30,7 @@ public class LoginTest extends BaseTest{
     }
 
     @Test(description = "13. Check success logout")
-    public void checkSuccessLogout(){
+    public void checkSuccessLogoutTest(){
         loginSteps.login(USER, PASSWORD, LOGIN_PAGE_URL);
         loginSteps.logoutAndCheckLoginPage();
     }
