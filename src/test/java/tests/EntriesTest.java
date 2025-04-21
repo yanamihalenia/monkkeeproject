@@ -32,9 +32,7 @@ public class EntriesTest extends BaseTest{
     public void changeEntryDateTest(){
         loginSteps.login(USER, PASSWORD, LOGIN_PAGE_URL);
         entriesSteps.createNewEntryAndCheckEntryIsCreated(faker.book().title());
-        entriesPage.clickEntryDescription();
-        editEntryPage.setEntryDate();
-        editEntryPage.backToAllEntries();
+        entriesSteps.changeEntryDate(2025, 7, 22);
     }
 
     private Object[][] getEntries(){
@@ -62,9 +60,10 @@ public class EntriesTest extends BaseTest{
     @Test(description = "12. Search entry by description", groups = "afterMethodGroup")
     public void searchEntryByDescriptionTest(){
         loginSteps.login(USER, PASSWORD, LOGIN_PAGE_URL);
-        entriesSteps.createNewEntryAndCheckEntryIsCreated("Pay for bill");
-        entriesSteps.createNewEntryAndCheckEntryIsCreated("Meeting");
-        entriesSteps.createNewEntryAndCheckEntryIsCreated("Meeting with team");
+        entriesSteps
+                .createNewEntryAndCheckEntryIsCreated("Pay for bill")
+                .createNewEntryAndCheckEntryIsCreated("Meeting")
+                .createNewEntryAndCheckEntryIsCreated("Meeting with team");
         Assert.assertEquals(entriesSteps.checkNumberOfEntries(), "3 entries");
         entriesSteps.fillSearchAndClickSearch("Pay");
         Assert.assertEquals(entriesSteps.checkNumberOfEntries(), "1 entries");
@@ -76,7 +75,7 @@ public class EntriesTest extends BaseTest{
     public void checkTagAssignedToEntryTest(){
         loginSteps.login(USER, PASSWORD, LOGIN_PAGE_URL);
         entriesSteps.createEntry(faker.name().fullName());
-        editEntryPage.createNewTag("some tag");
+        editEntrySteps.createNewTagOnEditPage("some tag");
         entriesSteps.checkTagAssignedToEntry();
     }
 
@@ -86,7 +85,7 @@ public class EntriesTest extends BaseTest{
         for (String group : groups) {
             if ("afterMethodGroup".equals(group)) {
                 entriesSteps.selectAllEntriesAndDelete();
-                System.out.println("AfterMethod for afterMethodGroup tests");
+                log.info("AfterMethod for afterMethodGroup tests");
             }
         }
     }

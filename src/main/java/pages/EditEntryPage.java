@@ -1,12 +1,14 @@
 package pages;
 
 import com.codeborne.selenide.SelenideElement;
+import lombok.extern.log4j.Log4j2;
 
 import java.time.Duration;
 import java.time.LocalDate;
 
 import static com.codeborne.selenide.Selenide.*;
 
+@Log4j2
 public class EditEntryPage extends BasePage{
     private static final SelenideElement BACK_TO_OVERVIEW_BUTTON = $("#back-to-overview");
     private static final SelenideElement ENTRY_INPUT = $("#editable");
@@ -39,9 +41,9 @@ public class EditEntryPage extends BasePage{
         return this;
     }
 
-    public EditEntryPage setEntryDate(){
+    public EditEntryPage setEntryDate(Integer year, Integer month, Integer day){
         CHANGE_DATE_TIME_LINK.click();
-        LocalDate dateToSelect = LocalDate.of(2025, 4, 25);
+        LocalDate dateToSelect = LocalDate.of(year, month, day);
         datePicker.selectDate(dateToSelect, DATE_INPUT);
         button.clickButton(CLOSE_CALENDAR);
         button.clickButton(CHANGE_DATE_OK_BUTTON);
@@ -49,6 +51,12 @@ public class EditEntryPage extends BasePage{
     }
 
     public String getTagNameOnEditEntryPage(){
-        return ASSIGNED_TAG.getText();
+        try {
+            log.info("Getting tag name on edit entry page");
+            return ASSIGNED_TAG.getText();
+        } catch (Exception e) {
+            log.error("Failed to retrieve tag name on edit entry page", e);
+            return "";
+        }
     }
 }

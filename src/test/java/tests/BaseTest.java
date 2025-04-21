@@ -32,6 +32,7 @@ public class BaseTest implements IConstants, ITestConstants {
     TagsPage tagsPage;
     TagsSteps tagsSteps;
     SettingsSteps settingsSteps;
+    EditEntrySteps editEntrySteps;
     Faker faker = new Faker();
 
     public static String USER = PropertyReader.getProperty("user");
@@ -50,6 +51,7 @@ public class BaseTest implements IConstants, ITestConstants {
         tagsPage = new TagsPage();
         tagsSteps = new TagsSteps();
         settingsSteps = new SettingsSteps();
+        editEntrySteps = new EditEntrySteps();
     }
 
     @BeforeMethod

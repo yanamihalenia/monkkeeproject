@@ -19,7 +19,7 @@ public class LoginSteps implements IConstants {
         headerPage = new HeaderPage();
     }
 
-    @Step
+    @Step("Fill login/password and click Login")
     public void login(String username, String password, String url){
         loginPage.login(username, password, url);
     }
@@ -29,19 +29,19 @@ public class LoginSteps implements IConstants {
         entriesPage.isCreateButtonVisible();
     }
 
-    @Step("Logout and check user on login page")
+    @Step("Logout and check user is on login page")
     public void logoutAndCheckLoginPage(){
         headerPage.clickLogout();
         String currentUrl = WebDriverRunner.url();
         Assert.assertEquals(currentUrl, LOGIN_PAGE_URL);
     }
 
-    @Step
+    @Step("Check username validation message (mandatory field)")
     public void checkUsernameValidation(){
         Assert.assertEquals(loginPage.getUsernameErrorMessageText(), ERROR_TEXT_MESSAGE);
     }
 
-    @Step
+    @Step("Check password validation message (mandatory field)")
     public void checkPasswordValidation(){
         Assert.assertEquals(loginPage.getPasswordErrorMessageText(), ERROR_TEXT_MESSAGE);
     }

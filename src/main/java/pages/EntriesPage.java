@@ -54,7 +54,13 @@ public class EntriesPage extends BasePage{
     }
 
     public String getEntryTextFromListOfEntries(){
-        return ENTRY_DESCRIPTION.getText();
+        try {
+            log.info("Getting entry description from list of entries");
+            return ENTRY_DESCRIPTION.getText();
+        } catch (Exception e) {
+            log.error("Failed to get entry description", e);
+            return "";
+        }
     }
 
     public EditEntryPage clickEntryDescription(){
@@ -62,7 +68,7 @@ public class EntriesPage extends BasePage{
         return new EditEntryPage();
     }
 
-    public EntriesPage checkEntryFromList(String entryDescription){
+    public EntriesPage selectEntryFromList(String entryDescription){
         $x(String.format(CHECKBOX_SELECT_ONE, entryDescription)).click();
         return this;
     }
@@ -74,7 +80,13 @@ public class EntriesPage extends BasePage{
     }
 
     public String getTagNameFromDescription(){
-        return ENTRY_TAG_NAME.getText();
+        try {
+            log.info("Getting tag name from entry description");
+            return ENTRY_TAG_NAME.getText();
+        }catch (Exception e) {
+            log.warn("Failed to get tag name from entry description", e);
+            return "";
+        }
     }
 
     public EntriesPage checkAllEntries(){

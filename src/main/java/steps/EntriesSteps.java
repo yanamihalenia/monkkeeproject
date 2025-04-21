@@ -16,12 +16,13 @@ public class EntriesSteps implements IConstants {
     }
 
     @Step("Create entry and check it in the list of all entries")
-    public void createNewEntryAndCheckEntryIsCreated(String entryText){
+    public EntriesSteps createNewEntryAndCheckEntryIsCreated(String entryText){
         entriesPage
                 .openFormForNewEntry()
                 .fillEntryForm(entryText)
                 .backToAllEntries();
         Assert.assertEquals(entriesPage.getEntryTextFromListOfEntries(), entryText);
+        return this;
     }
 
     @Step("Create entry and stay on Edit page")
@@ -45,7 +46,7 @@ public class EntriesSteps implements IConstants {
     @Step("Check and delete entry by description")
     public void selectAndDeleteEntryByDescription(String entryDescription){
         entriesPage
-                .checkEntryFromList(entryDescription)
+                .selectEntryFromList(entryDescription)
                 .clickDeleteButton();
     }
 
@@ -73,7 +74,7 @@ public class EntriesSteps implements IConstants {
         return numOfEntriesInList;
     }
 
-    @Step
+    @Step("Check message when no entries")
     public void checkMessageWhenNoEntries() {
         Assert.assertTrue(entriesPage.getNotFoundEntriesMessage());
     }
@@ -97,5 +98,12 @@ public class EntriesSteps implements IConstants {
         editEntryPage.backToAllEntries();
         String tagNameOnAllEntries = entriesPage.getTagNameFromDescription();
         Assert.assertEquals(tagNameOnEdit, tagNameOnAllEntries);
+    }
+
+    @Step("Click on entry description to open edit entry page")
+    public void changeEntryDate(Integer year, Integer month, Integer day){
+        entriesPage.clickEntryDescription();
+        editEntryPage.setEntryDate(year, month, day);
+        editEntryPage.backToAllEntries();
     }
 }
