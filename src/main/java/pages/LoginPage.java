@@ -1,7 +1,6 @@
 package pages;
 
 import com.codeborne.selenide.SelenideElement;
-import com.codeborne.selenide.WebDriverRunner;
 import lombok.extern.log4j.Log4j2;
 
 import static com.codeborne.selenide.Selenide.*;
@@ -18,8 +17,8 @@ public class LoginPage extends BasePage {
 
     public EntriesPage login(String username, String password, String url){
         open(url);
-        input.fillField(USER_INPUT, username);
-        input.fillField(PASSWORD_INPUT, password);
+        input.fillFieldWithClear(USER_INPUT, username);
+        input.fillFieldWithClear(PASSWORD_INPUT, password);
         button.clickButton(LOGIN_BUTTON);
         return new EntriesPage();
     }

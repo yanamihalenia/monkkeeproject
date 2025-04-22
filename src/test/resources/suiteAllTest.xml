@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Login Tests" parallel="tests" thread-count="2">
+    <test name="Login Test">
+        <classes>
+            <class name="tests.LoginTest"/>
+        </classes>
+    </test>
+    <test name="Entries Test">
+        <classes>
+            <class name="tests.EntriesTest"/>
+        </classes>
+    </test>
+    <test name="Registration Test">
+        <classes>
+            <class name="tests.RegisterTest"/>
+        </classes>
+    </test>
+    <test name="Settings Test">
+        <classes>
+            <class name="tests.SettingsTest"/>
+        </classes>
+    </test>
+    <test name="Manage tags Test">
+        <classes>
+            <class name="tests.TagsTest"/>
+        </classes>
+    </test>
+</suite>
