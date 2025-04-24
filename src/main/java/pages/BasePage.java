@@ -2,7 +2,6 @@ package pages;
 
 import constants.IConstants;
 import elements.Button;
-import elements.Checkbox;
 import elements.DatePicker;
 import elements.Input;
 import waiters.Waiter;
