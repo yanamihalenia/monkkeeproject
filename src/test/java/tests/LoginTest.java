@@ -6,7 +6,7 @@ public class LoginTest extends BaseTest{
 
     @Test(description = "2. Login with valid data")
     public void successLoginTest(){
-        loginSteps.login(USER, PASSWORD, LOGIN_PAGE_URL);
+        loginSteps.login(System.getenv("username"), System.getenv("password"), LOGIN_PAGE_URL);
         loginSteps.checkEnteriesPageOpened();
     }
 
