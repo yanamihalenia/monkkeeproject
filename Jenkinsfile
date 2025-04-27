@@ -22,8 +22,18 @@ pipeline {
             //sh "mvn clean test"
 
             // To run Maven on a Windows agent, use
-            bat "mvn clean -Dusername=${user} -Dpassword=${password} test"
+            script{
+                try {
+                     bat "mvn clean -Dusername=${user} -Dpassword=${password} test"
+                } catch (Exception e) {
+                     currentBuild.result = 'FAILURE'
+                     // Логируем ошибку, но не останавливаем пайплайн
+                     echo "Tests failed, proceeding with report generation."
+                    }
+                }
+            }
          }
+      }
 
 //          post {
 //             // If Maven was able to run the tests, even if some of the test
