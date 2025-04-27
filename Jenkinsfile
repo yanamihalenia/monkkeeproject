@@ -15,26 +15,24 @@ pipeline {
    stages {
       stage('Testing') {
          steps {
-            // Get some code from a GitHub repository
-            git branch: "${params.BRANCH}", url: 'https://github.com/yanamihalenia/monkkeeproject.git'
-
-            // Run Maven on a Unix agent.
-            //sh "mvn clean test"
-
-            // To run Maven on a Windows agent, use
-            script{
+            script {
                 try {
+                    // Get some code from a GitHub repository
+                    git branch: "${params.BRANCH}", url: 'https://github.com/yanamihalenia/monkkeeproject.git'
+
+                    // Run Maven on a Unix agent.
+                    //sh "mvn clean test"
+
+                    // To run Maven on a Windows agent, use
                      bat "mvn clean -Dusername=${user} -Dpassword=${password} test"
                 } catch (Exception e) {
                      currentBuild.result = 'FAILURE'
-                     // Логируем ошибку, но не останавливаем пайплайн
                      echo "Tests failed, proceeding with report generation."
-                    }
                 }
             }
          }
       }
-   }
+
       stage('Reporting') {
          steps {
              script {
