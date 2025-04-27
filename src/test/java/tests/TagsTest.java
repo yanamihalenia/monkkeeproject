@@ -6,7 +6,7 @@ public class TagsTest extends BaseTest{
 
     @Test(description = "10. Create new tag")
     public void createNewTagTest(){
-        loginSteps.login(USER, PASSWORD, LOGIN_PAGE_URL);
+        loginSteps.login(System.getProperty("username"), System.getProperty("password"), LOGIN_PAGE_URL);
         entriesSteps.createNewEntryAndCheckEntryIsCreated(faker.name().name());
         tagsSteps.createTagAndCheckItOnManageTagsPage(faker.name().title());
     }

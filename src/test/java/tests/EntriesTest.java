@@ -11,26 +11,26 @@ public class EntriesTest extends BaseTest{
 
     @Test(description = "6. Create an entry", groups = "afterMethodGroup")
     public void createNewEntryTest(){
-        loginSteps.login(USER, PASSWORD, LOGIN_PAGE_URL);
+        loginSteps.login(System.getProperty("username"), System.getProperty("password"), LOGIN_PAGE_URL);
         entriesSteps.createNewEntryAndCheckEntryIsCreated(faker.book().title());
     }
 
     @Test(description = "7. Update an entry", groups = "afterMethodGroup")
     public void updateEntryTest(){
-        loginSteps.login(USER, PASSWORD, LOGIN_PAGE_URL);
+        loginSteps.login(System.getProperty("username"), System.getProperty("password"), LOGIN_PAGE_URL);
         entriesSteps.createNewEntryAndCheckEntryIsCreated(faker.book().title());
         entriesSteps.updateEntryAndCheckEntryIsUpdated(faker.animal().name());
     }
 
     @Test(description = "8. Delete an entry")
     public void deleteEntryTest(){
-        loginSteps.login(USER, PASSWORD, LOGIN_PAGE_URL);
+        loginSteps.login(System.getProperty("username"), System.getProperty("password"), LOGIN_PAGE_URL);
         entriesSteps.createAndDeleteEntry(faker.animal().name());
     }
 
     @Test(description = "9. Update entry's date", groups = "afterMethodGroup")
     public void changeEntryDateTest(){
-        loginSteps.login(USER, PASSWORD, LOGIN_PAGE_URL);
+        loginSteps.login(System.getProperty("username"), System.getProperty("password"), LOGIN_PAGE_URL);
         entriesSteps.createNewEntryAndCheckEntryIsCreated(faker.book().title());
         entriesSteps.changeEntryDate(2025, 7, 22);
     }
@@ -46,7 +46,7 @@ public class EntriesTest extends BaseTest{
 
     @Test(description = "11. Check entries pagination")
     public void checkEntriesPaginationTest(){
-        loginSteps.login(USER, PASSWORD, LOGIN_PAGE_URL);
+        loginSteps.login(System.getProperty("username"), System.getProperty("password"), LOGIN_PAGE_URL);
         Object[][] entries = getEntries();
         for (Object[] entry : entries) {
             entriesSteps.createNewEntryAndCheckEntryIsCreated((String) entry[0]);
@@ -59,7 +59,7 @@ public class EntriesTest extends BaseTest{
 
     @Test(description = "12. Search entry by description", groups = "afterMethodGroup")
     public void searchEntryByDescriptionTest(){
-        loginSteps.login(USER, PASSWORD, LOGIN_PAGE_URL);
+        loginSteps.login(System.getProperty("username"), System.getProperty("password"), LOGIN_PAGE_URL);
         entriesSteps
                 .createNewEntryAndCheckEntryIsCreated("Pay for bill")
                 .createNewEntryAndCheckEntryIsCreated("Meeting")
@@ -73,7 +73,7 @@ public class EntriesTest extends BaseTest{
 
     @Test(description = "15. Check tag assigned to entry", groups = "afterMethodGroup")
     public void checkTagAssignedToEntryTest(){
-        loginSteps.login(USER, PASSWORD, LOGIN_PAGE_URL);
+        loginSteps.login(System.getProperty("username"), System.getProperty("password"), LOGIN_PAGE_URL);
         entriesSteps.createEntry(faker.name().fullName());
         editEntrySteps.createNewTagOnEditPage("some tag");
         entriesSteps.checkTagAssignedToEntry();
