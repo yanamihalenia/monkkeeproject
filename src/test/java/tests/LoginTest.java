@@ -18,7 +18,7 @@ public class LoginTest extends BaseTest{
 
     @Test(description = "4. Login with empty password")
     public void loginWithEmptyPasswordTest(){
-        loginSteps.login(USER, "", LOGIN_PAGE_URL);
+        loginSteps.login(System.getenv("username"), "", LOGIN_PAGE_URL);
         loginSteps.checkPasswordValidation();
     }
 
@@ -31,7 +31,7 @@ public class LoginTest extends BaseTest{
 
     @Test(description = "13. Check success logout")
     public void checkSuccessLogoutTest(){
-        loginSteps.login(USER, PASSWORD, LOGIN_PAGE_URL);
+        loginSteps.login(System.getenv("username"), System.getenv("password"), LOGIN_PAGE_URL);
         loginSteps.logoutAndCheckLoginPage();
     }
 }
