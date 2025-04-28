@@ -62,21 +62,21 @@ public class EntriesSteps implements IConstants {
     }
 
     @Step("Select all entries and delete")
-    public void selectAllEntriesAndDelete(){
+    public EntriesSteps selectAllEntriesAndDelete(){
         entriesPage
                 .checkAllEntries()
                 .clickDeleteButton();
+        return this;
     }
 
     @Step("Check number of entries")
     public String checkNumberOfEntries(){
-        String numOfEntriesInList = entriesPage.getNumOfEntries();
-        return numOfEntriesInList;
+        return entriesPage.getNumOfEntries();
     }
 
     @Step("Check message when no entries")
     public void checkMessageWhenNoEntries() {
-        Assert.assertTrue(entriesPage.getNotFoundEntriesMessage());
+        Assert.assertTrue(entriesPage.isNotFoundEntriesMessageDisplay());
     }
 
     @Step("Search entry")

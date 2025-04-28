@@ -112,7 +112,7 @@ public class EntriesPage extends BasePage{
         }
     }
 
-    public boolean getNotFoundEntriesMessage(){
+    public boolean isNotFoundEntriesMessageDisplay(){
         try {
             log.info("Checking 'No entries found' message");
             NO_ENTRIES_MESSAGE.shouldBe(Condition.visible);

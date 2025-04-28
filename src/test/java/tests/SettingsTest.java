@@ -25,7 +25,8 @@ public class SettingsTest extends BaseTest{
     @Test(description = "14. Check all settings tabs are available", dataProvider = "settingPages")
     public void checkAllSettingsAvailableTest(String settingPage, String pageTitle){
         loginSteps.login(System.getProperty("username"), System.getProperty("password"), LOGIN_PAGE_URL);
-        settingsSteps.openSettingsPage();
-        settingsSteps.openSettingTabAndCheckTitle(settingPage, pageTitle);
+        settingsSteps
+                .openSettingsPage()
+                .openSettingTabAndCheckTitle(settingPage, pageTitle);
     }
 }

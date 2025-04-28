@@ -11,7 +11,7 @@ public class LoginPage extends BasePage {
     private static final SelenideElement USER_INPUT = $("#login");
     private static final SelenideElement PASSWORD_INPUT = $("#password");
     private static final SelenideElement LOGIN_BUTTON = $x("//*[@type='submit']");
-    private static final String REGISTER_LINK_XPATH = "(//*[@class='login__links']/a)[2]";
+    private static final SelenideElement REGISTER_LINK_XPATH = $x("(//*[@class='login__links']/a)[2]");
     private static final SelenideElement ERROR_MESSAGE_USER_XPATH = $x("//*[@class='help-block ng-binding']");
     private static final SelenideElement ERROR_MESSAGE_PASSWORD_XPATH = $x("(//*[@class='help-block ng-binding'])[2]");
 
@@ -30,7 +30,7 @@ public class LoginPage extends BasePage {
 
     public RegisterPage goToRegisterPage(){
         openLoginPage(LOGIN_PAGE_URL);
-        $x(REGISTER_LINK_XPATH).click();
+        REGISTER_LINK_XPATH.click();
         return new RegisterPage();
     }
 

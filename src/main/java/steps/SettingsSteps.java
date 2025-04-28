@@ -16,8 +16,9 @@ public class SettingsSteps {
     }
 
     @Step("Open settings page")
-    public void openSettingsPage(){
+    public SettingsSteps openSettingsPage(){
         headerPage.goToSettings();
+        return this;
     }
 
     @Step("Open setting tab by name and check title")

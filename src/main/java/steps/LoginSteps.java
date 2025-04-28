@@ -24,8 +24,8 @@ public class LoginSteps implements IConstants {
         loginPage.login(username, password, url);
     }
 
-    @Step("Check Enteries page opened after login")
-    public void checkEnteriesPageOpened(){
+    @Step("Check Entries page opened after login")
+    public void checkEntriesPageOpened(){
         entriesPage.isCreateButtonVisible();
     }
 

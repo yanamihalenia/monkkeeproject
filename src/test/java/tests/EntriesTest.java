@@ -5,9 +5,11 @@ import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 
 @Slf4j
 public class EntriesTest extends BaseTest{
+    SoftAssert softAssert = new SoftAssert();
 
     @Test(description = "6. Create an entry", groups = "afterMethodGroup")
     public void createNewEntryTest(){
@@ -18,8 +20,9 @@ public class EntriesTest extends BaseTest{
     @Test(description = "7. Update an entry", groups = "afterMethodGroup")
     public void updateEntryTest(){
         loginSteps.login(System.getProperty("username"), System.getProperty("password"), LOGIN_PAGE_URL);
-        entriesSteps.createNewEntryAndCheckEntryIsCreated(faker.book().title());
-        entriesSteps.updateEntryAndCheckEntryIsUpdated(faker.animal().name());
+        entriesSteps
+                .createNewEntryAndCheckEntryIsCreated(faker.book().title())
+                .updateEntryAndCheckEntryIsUpdated(faker.animal().name());
     }
 
     @Test(description = "8. Delete an entry")
@@ -53,8 +56,9 @@ public class EntriesTest extends BaseTest{
         }
         String numOfEntries = entriesSteps.checkNumberOfEntries();
         Assert.assertEquals(numOfEntries, "4 entries");
-        entriesSteps.selectAllEntriesAndDelete();
-        entriesSteps.checkMessageWhenNoEntries();
+        entriesSteps
+                .selectAllEntriesAndDelete()
+                .checkMessageWhenNoEntries();
     }
 
     @Test(description = "12. Search entry by description", groups = "afterMethodGroup")
@@ -64,11 +68,11 @@ public class EntriesTest extends BaseTest{
                 .createNewEntryAndCheckEntryIsCreated("Pay for bill")
                 .createNewEntryAndCheckEntryIsCreated("Meeting")
                 .createNewEntryAndCheckEntryIsCreated("Meeting with team");
-        Assert.assertEquals(entriesSteps.checkNumberOfEntries(), "3 entries");
+        softAssert.assertEquals(entriesSteps.checkNumberOfEntries(), "3 entries");
         entriesSteps.fillSearchAndClickSearch("Pay");
-        Assert.assertEquals(entriesSteps.checkNumberOfEntries(), "1 entries");
+        softAssert.assertEquals(entriesSteps.checkNumberOfEntries(), "1 entries");
         entriesSteps.resetSearch();
-        Assert.assertEquals(entriesSteps.checkNumberOfEntries(), "3 entries");
+        softAssert.assertEquals(entriesSteps.checkNumberOfEntries(), "3 entries");
     }
 
     @Test(description = "15. Check tag assigned to entry", groups = "afterMethodGroup")
