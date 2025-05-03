@@ -24,6 +24,7 @@ public class EntriesPage extends BasePage{
     private static final SelenideElement SEARCH_BUTTON = $x("//*[@title='Search']");
     private static final SelenideElement RESET_LINK = $("#reset-search");
     private static final SelenideElement ENTRY_TAG_NAME = $x("//*[@class='entries']//*[contains(@class,'entries__tags')]/span");
+    private static final SelenideElement ENTRY_FULL_DATE = $x("//*[@class='entries__checkbox-datetime-wrapper']/div[contains(@class,'entries__full-date')]"); //$x("//*[@class='entries']//*[contains(@class,'entries__full-date')]");
 
     /**
      * Check Create button is visible.
@@ -100,13 +101,21 @@ public class EntriesPage extends BasePage{
     }
 
     /**
-     * Select checkbox near entry by entry description .
+     * Select checkbox near entry by entry description.
      *
      * @return the Entry edit page
      */
     public EntriesPage selectEntryFromList(String entryDescription){
         $x(String.format(CHECKBOX_SELECT_ONE, entryDescription)).click();
         return this;
+    }
+
+    /**
+     * Get entry date and time.
+     */
+    public String getEntryDateTime(){
+        isCreateButtonVisible();
+        return ENTRY_FULL_DATE.getText();
     }
 
     /**

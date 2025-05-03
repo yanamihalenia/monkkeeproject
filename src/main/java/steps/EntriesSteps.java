@@ -2,10 +2,16 @@ package steps;
 
 import constants.IConstants;
 import io.qameta.allure.Step;
+import lombok.extern.log4j.Log4j2;
 import org.testng.Assert;
 import pages.EditEntryPage;
 import pages.EntriesPage;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
+
+@Log4j2
 public class EntriesSteps implements IConstants {
     private EntriesPage entriesPage;
     private EditEntryPage editEntryPage;
@@ -105,5 +111,18 @@ public class EntriesSteps implements IConstants {
         entriesPage.clickEntryDescription();
         editEntryPage.setEntryDate(year, month, day);
         editEntryPage.backToAllEntries();
+        getEntryDateAndFormatToYMD();
+        Assert.assertEquals(getEntryDateAndFormatToYMD(), year + "/" + month + "/" + day);
+    }
+
+    @Step("Get entry's date and format it to yyyy/mm/dd")
+    public String getEntryDateAndFormatToYMD(){
+        String entryFullDate = entriesPage.getEntryDateTime(); // не знаю почему получаю пустую дату
+        log.info("Date string: '" + entryFullDate + "'");
+        DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("EEE, d MMM yyyy hh:mm a", Locale.ENGLISH);
+        LocalDateTime dateTime = LocalDateTime.parse(entryFullDate, inputFormatter);
+        DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+        String formattedDate = dateTime.format(outputFormatter);
+        return formattedDate;
     }
 }

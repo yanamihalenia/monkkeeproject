@@ -33,7 +33,7 @@ public class EntriesTest extends BaseTest{
 
     @Test(description = "9. Update entry's date", groups = "afterMethodGroup")
     public void changeEntryDateTest(){
-        loginSteps.login(System.getProperty("username"), System.getProperty("password"), LOGIN_PAGE_URL);
+        loginSteps.login(USER, PASSWORD, LOGIN_PAGE_URL);
         entriesSteps.createNewEntryAndCheckEntryIsCreated(faker.book().title());
         entriesSteps.changeEntryDate(2025, 7, 22);
     }
