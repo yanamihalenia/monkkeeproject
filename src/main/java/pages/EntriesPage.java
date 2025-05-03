@@ -25,34 +25,60 @@ public class EntriesPage extends BasePage{
     private static final SelenideElement RESET_LINK = $("#reset-search");
     private static final SelenideElement ENTRY_TAG_NAME = $x("//*[@class='entries']//*[contains(@class,'entries__tags')]/span");
 
-
+    /**
+     * Check Create button is visible.
+     *
+     * @return the Entries page
+     */
     public EntriesPage isCreateButtonVisible(){
         CREATE_ENTRY_BUTTON.shouldBe(Condition.visible);
         return this;
     }
 
+    /**
+     * Check Delete button is disabled.
+     *
+     * @return the Entries page
+     */
     public EntriesPage isDeleteButtonDisabled(){
         DELETE_ENTRY_BUTTON.shouldHave(cssClass("disabled"));
         return this;
     }
 
+    /**
+     * Open new entry form.
+     *
+     * @return the Entries page
+     */
     public EditEntryPage openFormForNewEntry(){
         button.clickButton(CREATE_ENTRY_BUTTON);
         return new EditEntryPage();
     }
 
+    /**
+     * Reset filter.
+     */
     public void clickReset(){
         button.clickButton(RESET_LINK);
     }
 
+    /**
+     * Wait Reset become visible.
+     */
     public void waitResetIsVisible(){
         waiter.waitForElementIsVisible(RESET_LINK, Duration.ofSeconds(3));
     }
 
+    /**
+     * Wait Create become visible.
+     */
     public void waitCreateButtonIsVisible(){
         waiter.waitForElementIsVisible(CREATE_ENTRY_BUTTON, Duration.ofSeconds(3));
     }
 
+    /**
+     * Get entry text from Entries list.
+     */
     public String getEntryTextFromListOfEntries(){
         try {
             log.info("Getting entry description from list of entries");
@@ -63,22 +89,38 @@ public class EntriesPage extends BasePage{
         }
     }
 
+    /**
+     * Click entry description.
+     *
+     * @return the Entry edit page
+     */
     public EditEntryPage clickEntryDescription(){
         ENTRY_DESCRIPTION.click();
         return new EditEntryPage();
     }
 
+    /**
+     * Select checkbox near entry by entry description .
+     *
+     * @return the Entry edit page
+     */
     public EntriesPage selectEntryFromList(String entryDescription){
         $x(String.format(CHECKBOX_SELECT_ONE, entryDescription)).click();
         return this;
     }
 
+    /**
+     * Click Delete button.
+     */
     public void clickDeleteButton(){
         button.clickButton(DELETE_ENTRY_BUTTON);
         Selenide.switchTo().alert().accept();
         isDeleteButtonDisabled();
     }
 
+    /**
+     * Get Tag name from entry description.
+     */
     public String getTagNameFromDescription(){
         try {
             log.info("Getting tag name from entry description");
@@ -89,19 +131,33 @@ public class EntriesPage extends BasePage{
         }
     }
 
+    /**
+     * Select All entries checkbox.
+     *
+     * @return the Entries page
+     */
     public EntriesPage checkAllEntries(){
         CHECKBOX_SELECT_ALL.click();
         return this;
     }
 
+    /**
+     * Fill Search field.
+     */
     public void fillSearchField(String textSearch){
         input.fillField(SEARCH_INPUT, textSearch);
     }
 
+    /**
+     * Click Search button.
+     */
     public void clickSearch(){
         button.clickButton(SEARCH_BUTTON);
     }
 
+    /**
+     * Get number of entries from pagination.
+     */
     public String getNumOfEntries(){
         try {
             log.info("Getting number of entries");
@@ -112,6 +168,9 @@ public class EntriesPage extends BasePage{
         }
     }
 
+    /**
+     * Check 'Not found Entries' message displayed.
+     */
     public boolean isNotFoundEntriesMessageDisplay(){
         try {
             log.info("Checking 'No entries found' message");

@@ -22,6 +22,11 @@ public class EditEntryPage extends BasePage{
     private static final SelenideElement CLOSE_CALENDAR = $x("//*[@class='datepicker dropdown-menu']//*[@class='datepicker-close']");
     private static final SelenideElement ASSIGNED_TAG = $x("//*[@id='tags']//*[contains(@class,'entry__assigned-tags')]//a");
 
+    /**
+     * Fill entry description.
+     *
+     * @return the Entry edit page
+     */
     public EditEntryPage fillEntryForm(String entryText){
         ENTRY_INPUT.click();
         waiter.waitForElementIsVisible(SETTINGS_OF_ENTRY_INPUT, Duration.ofSeconds(3));
@@ -30,17 +35,32 @@ public class EditEntryPage extends BasePage{
         return this;
     }
 
+    /**
+     * Back form Entry edit to Entries list.
+     *
+     * @return the Entries page
+     */
     public EntriesPage backToAllEntries(){
         button.clickButton(BACK_TO_OVERVIEW_BUTTON);
         return new EntriesPage();
     }
 
+    /**
+     * Create tag on Entry edit page.
+     *
+     * @return the Entry edit page
+     */
     public EditEntryPage createNewTag(String tagName){
         input.fillField(INPUT_NEW_TAG, tagName);
         button.clickButton(NEW_TAG_OK_BUTTON);
         return this;
     }
 
+    /**
+     * Set entry date.
+     *
+     * @return the Entry edit page
+     */
     public EditEntryPage setEntryDate(Integer year, Integer month, Integer day){
         CHANGE_DATE_TIME_LINK.click();
         LocalDate dateToSelect = LocalDate.of(year, month, day);
@@ -50,6 +70,9 @@ public class EditEntryPage extends BasePage{
         return this;
     }
 
+    /**
+     * Get tag name on Edit entry page.
+     */
     public String getTagNameOnEditEntryPage(){
         try {
             log.info("Getting tag name on edit entry page");

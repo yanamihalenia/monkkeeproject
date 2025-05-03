@@ -17,6 +17,11 @@ public class RegisterPage extends BasePage{
     private static final SelenideElement OK_BUTTON_XPATH = $x("//*[@type='submit']");
     private static final SelenideElement USER_REGISTERED_TEXT_XPATH = $x("//*[contains(text(),'User registered')]");
 
+    /**
+     * Fill fields in registration form.
+     *
+     * @return the Register page
+     */
     public RegisterPage fillRegisterForm(String email, String password, String passwordHint){
         input.fillFieldWithClear(EMAIL_INPUT, email);
         input.fillFieldWithClear(PASSWORD_INPUT, password);
@@ -25,6 +30,11 @@ public class RegisterPage extends BasePage{
         return this;
     }
 
+    /**
+     * Select agreement checkboxes and click OK.
+     *
+     * @return the Register page
+     */
     public RegisterPage confirmRegister(){
         new Checkbox(AGREEMENT_CHECKBOX_FIRST).setCheckboxValue(true);
         new Checkbox(AGREEMENT_CHECKBOX_SECOND).setCheckboxValue(true);
@@ -32,6 +42,11 @@ public class RegisterPage extends BasePage{
         return new RegisterPage();
     }
 
+    /**
+     * Check user success registered message.
+     *
+     * @return the Register page
+     */
     public RegisterPage checkUserRegisterText(){
         USER_REGISTERED_TEXT_XPATH.shouldBe(Condition.visible);
         return this;

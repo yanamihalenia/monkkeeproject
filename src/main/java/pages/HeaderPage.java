@@ -12,10 +12,18 @@ public class HeaderPage extends BasePage{
     private static final SelenideElement SETTINGS_BUTTON = $x("//*[contains(text(),'Settings')]");
     private static final SelenideElement LANGUAGE_DROPDOWN = $("#locale-menu");
 
+    /**
+     * Click Settings button.
+     */
     public void goToSettings(){
         button.clickButton(SETTINGS_BUTTON);
     }
 
+    /**
+     * Click Logout button.
+     *
+     * @return the Entry edit page
+     */
     public LoginPage clickLogout(){
         button.clickButton(LOGOUT_BUTTON);
         waiter.waitForElementIsVisible(LANGUAGE_DROPDOWN, Duration.ofSeconds(2));

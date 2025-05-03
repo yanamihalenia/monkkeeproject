@@ -15,6 +15,11 @@ public class LoginPage extends BasePage {
     private static final SelenideElement ERROR_MESSAGE_USER_XPATH = $x("//*[@class='help-block ng-binding']");
     private static final SelenideElement ERROR_MESSAGE_PASSWORD_XPATH = $x("(//*[@class='help-block ng-binding'])[2]");
 
+    /**
+     * Fill username, password and click Login button.
+     *
+     * @return the Entries page
+     */
     public EntriesPage login(String username, String password, String url){
         open(url);
         input.fillFieldWithClear(USER_INPUT, username);
@@ -23,17 +28,30 @@ public class LoginPage extends BasePage {
         return new EntriesPage();
     }
 
+    /**
+     * Open Login page by URL.
+     *
+     * @return the Login page
+     */
     public LoginPage openLoginPage(String url){
         open(url);
         return new LoginPage();
     }
 
+    /**
+     * Open Register page from Login page.
+     *
+     * @return the Login page
+     */
     public RegisterPage goToRegisterPage(){
         openLoginPage(LOGIN_PAGE_URL);
         REGISTER_LINK_XPATH.click();
         return new RegisterPage();
     }
 
+    /**
+     * Get username validation error message.
+     */
     public String getUsernameErrorMessageText() {
         try {
             log.info("Getting username error message text.");
@@ -44,6 +62,9 @@ public class LoginPage extends BasePage {
         }
     }
 
+    /**
+     * Get password validation error message.
+     */
     public String getPasswordErrorMessageText() {
         try {
             log.info("Getting password error message text.");
