@@ -24,8 +24,7 @@ public class EntriesPage extends BasePage{
     private static final SelenideElement SEARCH_BUTTON = $x("//*[@title='Search']");
     private static final SelenideElement RESET_LINK = $("#reset-search");
     private static final SelenideElement ENTRY_TAG_NAME = $x("//*[@class='entries']//*[contains(@class,'entries__tags')]/span");
-    private static final SelenideElement ENTRY_FULL_DATE = $x("//*[@class='entries__checkbox-datetime-wrapper']/div[contains(@class,'entries__full-date')]"); //$x("//*[@class='entries']//*[contains(@class,'entries__full-date')]");
-
+    private static final SelenideElement ENTRY_FULL_DATE = $x("//*[@class='entries__checkbox-datetime-wrapper']/div[contains(@class,'entries__full-date')]");
     /**
      * Check Create button is visible.
      *

@@ -38,8 +38,11 @@ public class BaseTest implements IConstants, ITestConstants {
     EditEntrySteps editEntrySteps;
     Faker faker = new Faker();
 
-    public static String USER = PropertyReader.getProperty("username");
-    public static String PASSWORD = PropertyReader.getProperty("password");
+//    public static String USER = PropertyReader.getProperty("username");
+//    public static String PASSWORD = PropertyReader.getProperty("password");
+
+    public static String USER = System.getProperty("username");
+    public static String PASSWORD = System.getProperty("password");
 
     public void initPages(){
         loginPage = new LoginPage();
